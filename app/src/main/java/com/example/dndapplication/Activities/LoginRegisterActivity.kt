@@ -9,8 +9,6 @@ import com.example.dndapplication.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
-import kotlinx.android.synthetic.main.activity_login_register.*
-
 class LoginRegisterActivity : AppCompatActivity(),  RegisterFragment.OnRegisterFragmentInteractionListener, LoginFragment.OnLoginFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

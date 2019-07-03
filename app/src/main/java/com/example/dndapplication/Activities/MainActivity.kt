@@ -1,5 +1,6 @@
 package com.example.dndapplication.Activities
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -9,13 +10,16 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
-import com.example.dndapplication.Fragments.LoginFragment
 import com.example.dndapplication.R
-import com.example.dndapplication.Fragments.RegisterFragment
+import com.example.dndapplication.Fragments.SheetFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    SheetFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,9 +72,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_home -> {
                 // Handle the camera action
+
             }
             R.id.nav_gallery -> {
-
+                val fragment = SheetFragment.newInstance("param1", "param2")
+                supportFragmentManager
+                    .beginTransaction().replace(R.id.fragment_container_main, fragment)
+                    .addToBackStack(null)
+                    .commit()
             }
             R.id.nav_slideshow -> {
 
