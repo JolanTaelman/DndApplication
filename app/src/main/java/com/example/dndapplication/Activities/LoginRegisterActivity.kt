@@ -2,7 +2,7 @@ package com.example.dndapplication.Activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dndapplication.Fragments.LoginFragment
 import com.example.dndapplication.Fragments.RegisterFragment
 import com.example.dndapplication.R
@@ -15,12 +15,12 @@ class LoginRegisterActivity : AppCompatActivity(),  RegisterFragment.OnRegisterF
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_register)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .build()
+       // val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       //     .build()
 
         showLoginFragment()
 
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        //val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun showLoginFragment(){

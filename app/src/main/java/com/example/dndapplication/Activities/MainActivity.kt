@@ -12,11 +12,21 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import com.example.dndapplication.R
 import com.example.dndapplication.Fragments.SheetFragment
+import com.example.dndapplication.Fragments.SheetsFragment
+import com.example.dndapplication.Models.Sheet
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    SheetFragment.OnFragmentInteractionListener {
+    SheetFragment.OnFragmentInteractionListener, SheetsFragment.OnListFragmentInteractionListener {
+    override fun onListFragmentInteraction(item: Sheet?) {
+        val fragment = SheetFragment.newInstance("param1", "param2")
+        supportFragmentManager
+            .beginTransaction().replace(R.id.fragment_container_main, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -71,8 +81,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle the camera action
-
+                val fragment = SheetsFragment.newInstance(1)
+                supportFragmentManager
+                    .beginTransaction().replace(R.id.fragment_container_main, fragment)
+                    .addToBackStack(null)
+                    .commit()
             }
             R.id.nav_gallery -> {
                 val fragment = SheetFragment.newInstance("param1", "param2")
@@ -82,7 +95,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
             R.id.nav_slideshow -> {
-
+                val fragment = SheetsFragment.newInstance(2)
+                supportFragmentManager
+                    .beginTransaction().replace(R.id.fragment_container_main, fragment)
+                    .addToBackStack(null)
+                    .commit()
             }
             R.id.nav_tools -> {
 
