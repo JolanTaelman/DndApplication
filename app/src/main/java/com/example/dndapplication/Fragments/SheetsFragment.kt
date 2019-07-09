@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.dndapplication.R
-
-import com.example.dndapplication.Fragments.dummy.DummyContent
-import com.example.dndapplication.Fragments.dummy.DummyContent.DummyItem
 import com.example.dndapplication.Models.Sheet
-
+import com.example.dndapplication.ViewModels.SheetDetailViewModel
 
 
 /**
@@ -29,12 +27,15 @@ class SheetsFragment : Fragment() {
 
     private var listener: OnListFragmentInteractionListener? = null
 
+    private lateinit var viewModel: SheetDetailViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
+        viewModel = ViewModelProviders.of(this).get(SheetDetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -43,8 +44,8 @@ class SheetsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sheets_list, container, false)
 
-        val sheets = createData()
-
+        viewModel.fillsheetList()
+        val sheets = viewModel.sheetList
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -56,7 +57,6 @@ class SheetsFragment : Fragment() {
                 val dividerItemDecoration = DividerItemDecoration(
                     context,DividerItemDecoration.VERTICAL
                 )
-
                 addItemDecoration(dividerItemDecoration)
             }
         }
@@ -77,33 +77,6 @@ class SheetsFragment : Fragment() {
         listener = null
     }
 
-    fun createData(): MutableList<Sheet> {
-        val sheetList =  mutableListOf<Sheet>()
-       /* val newSheet = Sheet("Jolan", "Noble", "Elf", "NG", "Fighter", 15, 10, 10, 10, 10, 10 , 15, 30, 44)
-        val newSheet2 = Sheet("Jolan Also", "Farmer", "Dwarf", "CE", "Paladin", 15, 10, 10, 10, 10, 10 , 15, 30, 44)
-        sheetList.add(newSheet)
-        sheetList.add(newSheet2)
-*/
-        for (i in 0..10) {
-            val playername = "Player $i"
-            val newSheet = Sheet(playername, "Noble", "Elf", "NG", "Fighter", 15, 10, 10, 10, 10, 10 , 15, 30, 44)
-            sheetList.add(newSheet)
-        }
-
-        return sheetList
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson
-     * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
     interface OnListFragmentInteractionListener {
         fun onListFragmentInteraction(item: Sheet?)
     }
@@ -111,7 +84,6 @@ class SheetsFragment : Fragment() {
     companion object {
 
         const val ARG_COLUMN_COUNT = "column-count"
-
         @JvmStatic
         fun newInstance(columnCount: Int) =
             SheetsFragment().apply {

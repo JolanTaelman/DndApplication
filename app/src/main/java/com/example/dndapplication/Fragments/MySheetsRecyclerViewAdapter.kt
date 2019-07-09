@@ -40,7 +40,7 @@ class MySheetsRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.mPlayerName.text = item.playerName
-        holder.mDndClass.text = item.dndClass
+        holder.mDndClass.text = item.className
 
         with(holder.mView) {
             tag = item
