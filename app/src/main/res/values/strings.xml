@@ -30,4 +30,7 @@
     <string name="race">Race:</string>
     <string name="align">Align.:</string>
     <string name="backgr">Backgr.:</string>
+    <string name="create_a_character">Create a character</string>
+    <string name="hit_dice">Hit Dice:</string>
+    <string name="character_sheet_app">Character Sheet App</string>
 </resources>

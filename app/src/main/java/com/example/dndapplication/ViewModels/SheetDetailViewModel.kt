@@ -11,13 +11,13 @@ class SheetDetailViewModel : ViewModel() {
             for (i in 0..10) {
                 val playername = "Player $i"
                 val characterName = "Steven $i"
-                val newSheet = Sheet(i,playername,characterName ,"Noble", "Elf", "NG", "Fighter", 8, 15, 15, 10, 10, 10, 10 , 10, 15, 30, 44)
+                val newSheet = Sheet(i.toString(),playername,characterName ,"Noble", "Elf", "NG", "Fighter", 8, 15, 15, 10, 10, 10, 10 , 10, 15, 30, 44)
                 sheetList.add(newSheet)
             }
         }
  }
 
-    fun getByID(id: Int): Sheet?{
+    fun getByID(id: String): Sheet?{
         var returnSheet: Sheet? = null
         sheetList.forEach {
             if(it.uid!! == id){

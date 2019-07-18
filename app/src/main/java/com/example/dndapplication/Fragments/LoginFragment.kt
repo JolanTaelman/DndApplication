@@ -11,11 +11,6 @@ import android.widget.Button
 import com.example.dndapplication.R
 import android.widget.TextView
 
-
-
-
-
-
 class LoginFragment : Fragment(), OnClickListener {
     private var listener: OnLoginFragmentInteractionListener? = null
 

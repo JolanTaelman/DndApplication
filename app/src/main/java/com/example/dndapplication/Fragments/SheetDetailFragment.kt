@@ -77,7 +77,6 @@ class SheetDetail : Fragment() {
             SheetDetail().apply {
                 arguments = Bundle().apply {
                     putParcelable(SHEET, Sheet)
-                   // putSerializable(SHEET, Sheet)
                 }
             }
     }

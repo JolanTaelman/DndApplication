@@ -1,4 +1,4 @@
-package be.equality.metar.injection.module
+package com.example.dndapplication.injection.module
 
 import com.example.dndapplication.Network.SheetApi
 import dagger.Module
@@ -11,47 +11,28 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
-/**
- * Module which provides all required dependencies for the network.
- *
- * Object: Singleton Instance see [The Kotlin reference](https://kotlinlang.org/docs/reference/object-declarations.html)
- * Retrofit: Library used for REST connections. See [The Retrofit reference](https://square.github.io/retrofit/)
- * What is Dependency Injection? See this [video](https://www.youtube.com/watch?v=IKD2-MAkXyQ)
- * Methods annotated with @Provides  informs Dagger that this method is the constructor
- */
 @Module
 object NetworkModule {
 
-
-    /**
-     * Provides the Metar Service implemenation
-     * @param retrofit the retrofit object used to instantiate the service
-     */
     @Provides
-    internal fun provideMetarApi(retrofit: Retrofit): SheetApi {
+    internal fun provideSheetApi(retrofit: Retrofit): SheetApi {
         return retrofit.create(SheetApi::class.java)
     }
 
+    val baseUrl: String = "https://dndprojserver.herokuapp.com/"
 
-    /**
-     * Return the Retrofit object.
-     */
     @Provides
     internal fun provideRetrofitInterface(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://dnd5eapi.co/api/")
-                .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .build()
+            .baseUrl(baseUrl)
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .build()
     }
 
-    /**
-     * Returns the OkHttpClient
-     */
     @Provides
     internal fun provideOkHttpClient(): OkHttpClient {
-        //To debug Retrofit/OkHttp we can intercept the calls and log them.
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
