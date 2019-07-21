@@ -82,11 +82,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+        if( savedInstanceState == null){
 
-        val fragment = HomeFragment.newInstance()
-        supportFragmentManager
-            .beginTransaction().replace(R.id.fragment_container_main, fragment)
-            .commit()
+            val fragment = HomeFragment.newInstance()
+            supportFragmentManager
+                .beginTransaction().replace(R.id.fragment_container_main, fragment)
+                .commit()
+        }
     }
 
     override fun onBackPressed() {

@@ -17,8 +17,6 @@ class HomeFragment : Fragment() {
 
     private var listener: OnHomeFragmentInteractionListener? = null
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
