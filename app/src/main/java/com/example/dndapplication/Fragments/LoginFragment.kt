@@ -18,6 +18,9 @@ class LoginFragment : Fragment(), OnClickListener {
     private var listener: OnLoginFragmentInteractionListener? = null
 
 
+    /**
+     * inflates the layout and sets the clickListeners.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +35,9 @@ class LoginFragment : Fragment(), OnClickListener {
         return v
     }
 
+    /**
+     * Triggers the click event on the listener depending on which button was clicked.
+     */
     override fun onClick(v: View?) {
         when (v?.id) {
 
@@ -62,8 +68,6 @@ class LoginFragment : Fragment(), OnClickListener {
 
 
     interface OnLoginFragmentInteractionListener {
-      //  fun switchRegister()
-
         fun loginButtonClicked(text: String)
 
         fun signInClicked()

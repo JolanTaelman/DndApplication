@@ -31,6 +31,9 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
     private var dndClass: DndClass? = null
     private var playerName: String? = null
 
+    /**
+     * Sets up the fragment and seeds the classes into the database
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,6 +71,9 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
         return rootView
     }
 
+    /**
+     * sets the playerName from the provided bundle arguments ;
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {

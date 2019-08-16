@@ -33,24 +33,23 @@ class SheetsFragment : Fragment() {
 
     private lateinit var viewModel: SheetViewModel
 
-    //private lateinit var sheets: List<Sheet>
-
-
+    /**
+     * Gets the provided Columncount and sets the viewmodel
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
-        viewModel = ViewModelProviders.of(this).get(SheetViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProviders.of(this).get(SheetViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_sheets_list, container, false)
         if (view is RecyclerView) {
-
             with(view) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
@@ -68,8 +67,6 @@ class SheetsFragment : Fragment() {
             }
             viewModel.getSheets().observe(this,sheetsObserver)
         }
-       // Log.e("Fraggers", sheets.toString())
-        // Set the adapter
         return view
     }
 

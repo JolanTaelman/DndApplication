@@ -16,10 +16,12 @@ class SheetDetail : Fragment() {
 
     private var sheet: Sheet? = null
 
+    /**
+     * sets the sheet from the provided bundle arguments
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-           // sheet = it.getSerializable(SHEET) as Sheet
             sheet = it.getParcelable(SHEET)
         }
     }

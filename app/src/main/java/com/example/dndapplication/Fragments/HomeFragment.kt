@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     }
 
     /**
-     * inflates the layout and sets the clicklisteners.
+     * inflates the layout and sets the clickListeners.
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
         return v
     }
 
+    /**
+     * Sets the welcome text to the selected Player
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         HomeWelcomeId.text = "Welcome $playerName"
