@@ -22,6 +22,9 @@ class HomeFragment : Fragment() {
     private var listener: OnHomeFragmentInteractionListener? = null
     private var playerName: String? = null
 
+    /**
+     * Gets the provided playername from the bundle
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,6 +32,9 @@ class HomeFragment : Fragment() {
         }
     }
 
+    /**
+     * inflates the layout and sets the clicklisteners.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

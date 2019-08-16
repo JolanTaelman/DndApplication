@@ -9,19 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dndapplication.Adapters.ClassListAdapter
 import com.example.dndapplication.Models.DndClass
 import com.example.dndapplication.Models.Sheet
 
 import com.example.dndapplication.R
 import com.example.dndapplication.ViewModels.SheetAddViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.android.synthetic.main.sheet_add_fragment.*
-import org.jetbrains.anko.find
+
+const val PLAYERNAME = "player-name"
 
 class SheetAddFragment : Fragment(), View.OnClickListener {
 
@@ -29,6 +29,7 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
 
     private var listener: OnClassListFragmentInteractionListener? = null
     private var dndClass: DndClass? = null
+    private var playerName: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +68,15 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
         return rootView
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            playerName = it.getString(PLAYERNAME)
+        }
+    }
+
+
+
     override fun onClick(v: View?) {
         val charName: String =  AddCharacterNameId.text.toString()
         val strVar: Int =  Integer.parseInt(AddCharacterStrId.text.toString())
@@ -86,19 +96,17 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
 
         val hp = dndClassLevel * dndClassHitDice
 
-        val player = GoogleSignIn.getLastSignedInAccount(activity)?.displayName
-
-        val newSheet = Sheet("", player, charName, background, race, alignment,dndClassname, dndClassHitDice,  dndClassLevel, strVar, dexVar, conVar, intVar, wisVar, chaVar, dndClassAC, 30, hp  )
+        val newSheet = Sheet("", playerName, charName, background, race, alignment,dndClassname, dndClassHitDice,  dndClassLevel, strVar, dexVar, conVar, intVar, wisVar, chaVar, dndClassAC, 30, hp  )
 
         viewModel.postSheet(newSheet)
 
-        listener?.saveSheet()
+        listener?.returnHome()
         }
 
     interface OnClassListFragmentInteractionListener {
         fun onListFragmentInteraction(item: DndClass?)
 
-        fun saveSheet()
+        fun returnHome()
     }
 
     override fun onAttach(context: Context) {
@@ -121,6 +129,12 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        fun newInstance() = SheetAddFragment()
+
+        fun newInstance(playerName : String) = SheetAddFragment()
+            .apply {
+                arguments = Bundle().apply {
+                    putString(PLAYERNAME, playerName)
+                }
+            }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dndapplication.Fragments
+package com.example.dndapplication.Adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.dndapplication.R
 import androidx.recyclerview.widget.DiffUtil
+import com.example.dndapplication.Fragments.SheetAddFragment
 import com.example.dndapplication.Models.DndClass
 import kotlinx.android.synthetic.main.fragment_sheets.view.dnd_class
 import kotlinx.android.synthetic.main.fragment_sheets.view.dndNumberId
@@ -27,6 +28,9 @@ class ClassListAdapter(private val mListener: SheetAddFragment.OnClassListFragme
         }
     }
 
+    /**
+     * binds the data to the correct place
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.mDndClass.text = item.name
@@ -40,6 +44,9 @@ class ClassListAdapter(private val mListener: SheetAddFragment.OnClassListFragme
         }
     }
 
+    /**
+     * returns the size of the list of classes
+     */
     override fun getItemCount(): Int {
         return data.size
     }
@@ -62,6 +69,9 @@ class ClassListAdapter(private val mListener: SheetAddFragment.OnClassListFragme
         }
     }
 
+    /**
+     * Calculates the difference between new data and old data and how to transforms the old list of data into the newer list.
+     */
     fun setData(newData: List<DndClass>) {
         if (data != null) {
             val postDiffCallback = PostDiffCallback(data, newData)

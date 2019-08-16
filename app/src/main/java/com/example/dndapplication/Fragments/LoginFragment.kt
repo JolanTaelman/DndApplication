@@ -11,7 +11,6 @@ import android.widget.Button
 import com.example.dndapplication.R
 import com.google.android.gms.common.SignInButton
 import org.jetbrains.anko.find
-import android.widget.EditText
 import kotlinx.android.synthetic.main.login_fragment.*
 
 
@@ -24,11 +23,9 @@ class LoginFragment : Fragment(), OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val v: View = inflater.inflate(R.layout.login_fragment, container, false)
-       // val t = v.findViewById(R.id.LoginSwapTextId) as TextView
         val b = v.findViewById(R.id.LoginButton) as Button
         val sb = v.find<SignInButton>(R.id.sign_in_button)
 
-        //t.setOnClickListener(this)
         b.setOnClickListener(this)
         sb.setOnClickListener(this)
 
@@ -37,9 +34,7 @@ class LoginFragment : Fragment(), OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-          /*  R.id.LoginSwapTextId -> {
-                listener?.switchRegister()
-            }*/
+
             R.id.LoginButton -> {
                 listener?.loginButtonClicked(AnonymousNameId.text.toString())
 

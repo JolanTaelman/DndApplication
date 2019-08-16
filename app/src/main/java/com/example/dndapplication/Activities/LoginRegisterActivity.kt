@@ -19,7 +19,7 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
 
     private val RC_SIGN_IN = 9001
     lateinit var mGoogleSignInClient: GoogleSignInClient
-
+    //options needed to make use of the google login feature.
     var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .build()
 
@@ -30,6 +30,9 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
+    /**
+     * If the user is still logged in through google, navigate towards the main activity
+     */
    override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this)
@@ -42,11 +45,17 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
         signIn()
     }
 
+    /**
+     * starts the google signing activity
+     */
     private fun signIn() {
        val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    /**
+     * Adds the login Fragment to the activity
+     */
     private fun showLoginFragment(){
         val fragment = LoginFragment.newInstance()
         supportFragmentManager
@@ -54,10 +63,16 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
             .commit()
     }
 
+    /**
+     * Takes the username passed and goes to the main activity.
+     */
     override fun loginButtonClicked(text: String) {
         goToMain(text)
     }
 
+    /**
+     * starts the Main activity with the provided player name
+     */
     private fun goToMain(text: String){
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("PlayerName", text)
@@ -65,7 +80,9 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
         finish()
     }
 
-
+    /**
+     * Get's the result from the google login activity and passes this along.
+     */
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
@@ -74,6 +91,9 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
         }
     }
 
+    /**
+     * If succesfully logged in, continue on to the main activity with the google display name of the logged in user.
+     */
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
@@ -82,9 +102,5 @@ class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragment
         } catch (e: ApiException) {
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
         }
-
     }
-
-
-
 }

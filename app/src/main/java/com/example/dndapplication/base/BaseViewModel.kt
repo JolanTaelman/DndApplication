@@ -23,12 +23,6 @@ abstract class BaseViewModel : ViewModel() {
     private fun inject() {
         when (this) {
             is SheetViewModel -> injector.inject(this)
-          //  is SheetAddViewModel  -> injector.inject(this)
-
         }
-    /*    when (this) {
-            is SheetAddViewModel  -> injector.inject(this)
-        }*/
     }
-
 }

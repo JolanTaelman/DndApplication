@@ -21,8 +21,6 @@ import com.example.dndapplication.Models.Sheet
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 
 
 
@@ -33,6 +31,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var playerName: String
 
+    /**
+     * Homefragment Wisselen met andere fragments
+     */
     override fun onHomeFragmentInteraction(page: String) {
         if (page === "view") {
             val fragment = SheetsFragment.newInstance(1)
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .addToBackStack(null)
                 .commit()
         } else if (page === "add") {
-            val fragment = SheetAddFragment.newInstance()
+            val fragment = SheetAddFragment.newInstance(playerName)
             supportFragmentManager
                 .beginTransaction().replace(R.id.fragment_container_main, fragment)
                 .addToBackStack(null)
@@ -49,21 +50,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun saveSheet() {
+
+    /**
+     * After saving a sheet, this method is called to replace the add fragment with the home fragment
+     */
+    override fun returnHome() {
         val fragment = HomeFragment.newInstance(playerName)
         supportFragmentManager
             .beginTransaction().replace(R.id.fragment_container_main, fragment)
-            .addToBackStack(null)
             .commit()
     }
 
+    /**
+     * On interaction with the dnd class, set the selected class in the add fragment to the selected class.
+     */
     override fun onListFragmentInteraction(item: DndClass?) {
         val fragManager = this.supportFragmentManager
         val frag = fragManager.fragments[1]
         (frag as SheetAddFragment).setDndClass(item!!)
     }
 
-
+    /**
+     * On interaction with a sheet from the sheetlist fragment, open the sheetDetail fragment with the selected sheet provided.
+     */
     override fun onListFragmentInteraction(item: Sheet?) {
         val fragment = SheetDetail.newInstance(item!!)
         supportFragmentManager
@@ -72,6 +81,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
+    /**
+     * sets the layouts and starts the home fragment
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -88,6 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        // Build the google signinOptions, needed to starts a session and log out hte user.
         val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .build()
 
@@ -104,7 +117,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-
+    /**
+     * Overrides the back button to close the drawer if it is opened
+     */
     override fun onBackPressed() {
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -121,6 +136,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    /**
+     * Signs out the user if they are logged in and returns to the login screen.
+     */
     private fun signOut() {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener(this) {
@@ -130,7 +148,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
     }
 
-
+    /**
+     * Handles navigation from the navigation drawer, matching hte click with the correct fragment navigation and closes the drawer.
+     */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -142,7 +162,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
             R.id.nav_list -> {
-                val fragment = SheetAddFragment.newInstance()
+                val fragment = SheetAddFragment.newInstance(playerName)
                 supportFragmentManager
                     .beginTransaction().replace(R.id.fragment_container_main, fragment)
                     .addToBackStack(null)

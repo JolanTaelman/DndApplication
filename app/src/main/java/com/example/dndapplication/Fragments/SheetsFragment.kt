@@ -2,7 +2,6 @@ package com.example.dndapplication.Fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +12,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.dndapplication.Adapters.MySheetsRecyclerViewAdapter
 import com.example.dndapplication.R
 import com.example.dndapplication.Models.Sheet
 import com.example.dndapplication.ViewModels.SheetViewModel

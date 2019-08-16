@@ -1,4 +1,4 @@
-package com.example.dndapplication.Fragments
+package com.example.dndapplication.Adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -28,6 +28,9 @@ class MySheetsRecyclerViewAdapter(
         }
     }
 
+    /**
+     * binds the data to the correct place
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.mPlayerName.text = item.playerName
@@ -39,6 +42,9 @@ class MySheetsRecyclerViewAdapter(
         }
     }
 
+    /**
+     * returns the size of the list of classes
+     */
     override fun getItemCount(): Int {
         return data.size
     }
@@ -59,6 +65,9 @@ class MySheetsRecyclerViewAdapter(
         }
     }
 
+    /**
+     * Calculates the difference between new data and old data and how to transforms the old list of data into the newer list.
+     */
     fun setData(newData: List<Sheet>) {
         val postDiffCallback = PostDiffCallback(data, newData)
         val diffResult = DiffUtil.calculateDiff(postDiffCallback)
