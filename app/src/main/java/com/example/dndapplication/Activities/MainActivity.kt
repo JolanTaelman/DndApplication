@@ -1,5 +1,6 @@
 package com.example.dndapplication.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.core.view.GravityCompat
@@ -18,21 +19,28 @@ import com.example.dndapplication.Fragments.SheetsFragment
 import com.example.dndapplication.Models.DndClass
 import com.example.dndapplication.Models.Sheet
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-     SheetsFragment.OnListFragmentInteractionListener, SheetAddFragment.OnClassListFragmentInteractionListener,
+    SheetsFragment.OnListFragmentInteractionListener, SheetAddFragment.OnClassListFragmentInteractionListener,
     HomeFragment.OnHomeFragmentInteractionListener {
 
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+    lateinit var playerName: String
 
     override fun onHomeFragmentInteraction(page: String) {
-        if(page === "view") {
+        if (page === "view") {
             val fragment = SheetsFragment.newInstance(1)
             supportFragmentManager
                 .beginTransaction().replace(R.id.fragment_container_main, fragment)
                 .addToBackStack(null)
                 .commit()
-        } else if(page === "add"){
+        } else if (page === "add") {
             val fragment = SheetAddFragment.newInstance()
             supportFragmentManager
                 .beginTransaction().replace(R.id.fragment_container_main, fragment)
@@ -42,8 +50,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun saveSheet() {
-
-        val fragment = HomeFragment.newInstance()
+        val fragment = HomeFragment.newInstance(playerName)
         supportFragmentManager
             .beginTransaction().replace(R.id.fragment_container_main, fragment)
             .addToBackStack(null)
@@ -52,7 +59,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onListFragmentInteraction(item: DndClass?) {
         val fragManager = this.supportFragmentManager
-        val frag = fragManager.fragments[0]
+        val frag = fragManager.fragments[1]
         (frag as SheetAddFragment).setDndClass(item!!)
     }
 
@@ -81,15 +88,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        navView.setNavigationItemSelectedListener(this)
-        if( savedInstanceState == null){
+        val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .build()
 
-            val fragment = HomeFragment.newInstance()
+        playerName =  intent.getStringExtra("PlayerName")
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        navView.setNavigationItemSelectedListener(this)
+        if (savedInstanceState == null) {
+
+            val fragment = HomeFragment.newInstance(playerName)
             supportFragmentManager
                 .beginTransaction().replace(R.id.fragment_container_main, fragment)
                 .commit()
         }
     }
+
 
     override fun onBackPressed() {
 
@@ -105,6 +119,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    private fun signOut() {
+        mGoogleSignInClient.signOut()
+            .addOnCompleteListener(this) {
+                val intent = Intent(this, LoginRegisterActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
     }
 
 
@@ -125,7 +148,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .addToBackStack(null)
                     .commit()
             }
-         }
+
+            R.id.nav_logout -> {
+                signOut()
+            }
+        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

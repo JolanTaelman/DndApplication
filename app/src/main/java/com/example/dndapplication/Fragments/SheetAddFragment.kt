@@ -19,6 +19,7 @@ import com.example.dndapplication.Models.Sheet
 
 import com.example.dndapplication.R
 import com.example.dndapplication.ViewModels.SheetAddViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.android.synthetic.main.sheet_add_fragment.*
 import org.jetbrains.anko.find
 
@@ -85,7 +86,9 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
 
         val hp = dndClassLevel * dndClassHitDice
 
-        val newSheet = Sheet("SampleID", "Player", charName, background, race, alignment,dndClassname, dndClassHitDice,  dndClassLevel, strVar, dexVar, conVar, intVar, wisVar, chaVar, dndClassAC, 30, hp  )
+        val player = GoogleSignIn.getLastSignedInAccount(activity)?.displayName
+
+        val newSheet = Sheet("", player, charName, background, race, alignment,dndClassname, dndClassHitDice,  dndClassLevel, strVar, dexVar, conVar, intVar, wisVar, chaVar, dndClassAC, 30, hp  )
 
         viewModel.postSheet(newSheet)
 
@@ -113,7 +116,7 @@ class SheetAddFragment : Fragment(), View.OnClickListener {
     }
 
     fun setDndClass(item: DndClass) {
-        currentClassID.text = item.name;
+        currentClassID.text = item.name
         this.dndClass = item
     }
 

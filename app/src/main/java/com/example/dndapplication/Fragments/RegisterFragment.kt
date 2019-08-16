@@ -19,14 +19,14 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v: View = inflater.inflate(R.layout.fragment_register, container, false)
+        val v: View = inflater.inflate(R.layout.fragment_register, container, false)
         val t = v.findViewById(R.id.RegisterSwapTextId) as TextView
         t.setOnClickListener(this)
         return v    }
 
-    fun onButtonPressed() {
+   /* fun onButtonPressed() {
         listener?.switchLogin()
-    }
+    }*/
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -44,12 +44,12 @@ class RegisterFragment : Fragment(), View.OnClickListener {
 
 
     override fun onClick(p0: View?) {
-        listener?.switchLogin()
+        //listener?.switchLogin()
     }
 
 
     interface OnRegisterFragmentInteractionListener {
-        fun switchLogin()
+       // fun switchLogin()
     }
 
     companion object {

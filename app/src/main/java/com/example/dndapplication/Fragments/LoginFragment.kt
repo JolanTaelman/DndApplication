@@ -9,7 +9,11 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
 import com.example.dndapplication.R
-import android.widget.TextView
+import com.google.android.gms.common.SignInButton
+import org.jetbrains.anko.find
+import android.widget.EditText
+import kotlinx.android.synthetic.main.login_fragment.*
+
 
 class LoginFragment : Fragment(), OnClickListener {
     private var listener: OnLoginFragmentInteractionListener? = null
@@ -19,22 +23,29 @@ class LoginFragment : Fragment(), OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var v: View = inflater.inflate(R.layout.login_fragment, container, false)
-        val t = v.findViewById(R.id.LoginSwapTextId) as TextView
+        val v: View = inflater.inflate(R.layout.login_fragment, container, false)
+       // val t = v.findViewById(R.id.LoginSwapTextId) as TextView
         val b = v.findViewById(R.id.LoginButton) as Button
-        t.setOnClickListener(this)
+        val sb = v.find<SignInButton>(R.id.sign_in_button)
+
+        //t.setOnClickListener(this)
         b.setOnClickListener(this)
+        sb.setOnClickListener(this)
 
         return v
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.LoginSwapTextId -> {
+          /*  R.id.LoginSwapTextId -> {
                 listener?.switchRegister()
-            }
+            }*/
             R.id.LoginButton -> {
-                listener?.loginButtonClicked()
+                listener?.loginButtonClicked(AnonymousNameId.text.toString())
+
+            }
+            R.id.sign_in_button -> {
+                listener?.signInClicked()
             }
         }
     }
@@ -56,9 +67,11 @@ class LoginFragment : Fragment(), OnClickListener {
 
 
     interface OnLoginFragmentInteractionListener {
-        fun switchRegister()
+      //  fun switchRegister()
 
-        fun loginButtonClicked()
+        fun loginButtonClicked(text: String)
+
+        fun signInClicked()
     }
 
     companion object {

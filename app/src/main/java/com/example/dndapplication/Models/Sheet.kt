@@ -8,10 +8,9 @@ import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "sheet_table", indices = [(Index(value = ["uid"], unique = true))])
 @Parcelize
 data class Sheet(
-    @field:Json(name = "_id") @PrimaryKey @NonNull  var uid: String?,
+    @field:Json(name = "_id") var uid: String?,
     @field:Json(name = "playerName") var playerName: String?,
     @field:Json(name = "characterName") var characterName: String?,
     @field:Json(name = "background") var background: String?,

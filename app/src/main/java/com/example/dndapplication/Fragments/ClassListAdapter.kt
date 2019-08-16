@@ -66,9 +66,7 @@ class ClassListAdapter(private val mListener: SheetAddFragment.OnClassListFragme
         if (data != null) {
             val postDiffCallback = PostDiffCallback(data, newData)
             val diffResult = DiffUtil.calculateDiff(postDiffCallback)
-
             data.clear()
-
             data.addAll(newData)
             diffResult.dispatchUpdatesTo(this)
         } else {

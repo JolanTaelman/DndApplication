@@ -18,26 +18,7 @@ import javax.inject.Singleton
 
 @Module
 class DatabaseModule(private val application: Application) {
-/*
-    @Provides
-    @Singleton
-    internal fun provideSheetRepository(sheetDao: SheetDao): SheetRepository {
-        return SheetRepository(sheetDao)
-    }
 
-
-    @Provides
-    @Singleton
-    internal fun provideSheetDao(sheetDatabase: SheetDatabase): SheetDao {
-        return sheetDatabase.sheetDao()
-    }
-
-    @Provides
-    @Singleton
-    internal fun provideSheetDatabase(context: Context): SheetDatabase {
-        return SheetDatabase.getDatabase(context)
-    }
-    */
   @Provides
   @Singleton
   internal fun provideClassRepository(classDao: ClassDao): ClassRepository {

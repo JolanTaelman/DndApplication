@@ -13,7 +13,5 @@ import javax.inject.Singleton
 @Component(modules = [NetworkModule::class])
 interface ViewModelComponent {
     fun inject(sheetViewModel: SheetViewModel)
-    //fun inject(fragment: BaseViewModel)
-    //fun inject(sheetAddViewModel: SheetAddViewModel)
 
 }

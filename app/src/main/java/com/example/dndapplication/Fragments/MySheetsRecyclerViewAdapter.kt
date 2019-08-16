@@ -60,18 +60,13 @@ class MySheetsRecyclerViewAdapter(
     }
 
     fun setData(newData: List<Sheet>) {
-        if (data != null) {
-            val postDiffCallback = PostDiffCallback(data!!, newData)
-            val diffResult = DiffUtil.calculateDiff(postDiffCallback)
+        val postDiffCallback = PostDiffCallback(data, newData)
+        val diffResult = DiffUtil.calculateDiff(postDiffCallback)
 
-            data.clear()
+        data.clear()
 
-            data.addAll(newData)
-            diffResult.dispatchUpdatesTo(this)
-        } else {
-            // first initialization
-            data = newData as MutableList<Sheet>
-        }
+        data.addAll(newData)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     internal inner class PostDiffCallback(private val oldSheets: List<Sheet>, private val newSheets: List<Sheet>) :
