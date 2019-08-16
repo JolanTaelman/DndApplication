@@ -51,7 +51,6 @@ class LoginFragment : Fragment(), OnClickListener {
         }
     }
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnLoginFragmentInteractionListener) {
