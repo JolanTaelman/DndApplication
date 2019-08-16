@@ -39,5 +39,6 @@
     <string name="view_sheets">View Sheets</string>
     <string name="add_sheet">Add Sheet</string>
     <string name="login">Login</string>
+    <string name="lv">Lv.</string>
 
 </resources>

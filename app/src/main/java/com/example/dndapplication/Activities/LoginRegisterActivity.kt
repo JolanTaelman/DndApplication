@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dndapplication.Fragments.LoginFragment
-import com.example.dndapplication.Fragments.RegisterFragment
 import com.example.dndapplication.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -16,7 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
 
-class LoginRegisterActivity : AppCompatActivity(),  RegisterFragment.OnRegisterFragmentInteractionListener, LoginFragment.OnLoginFragmentInteractionListener{
+class LoginRegisterActivity : AppCompatActivity(), LoginFragment.OnLoginFragmentInteractionListener{
 
     private val RC_SIGN_IN = 9001
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -55,13 +54,6 @@ class LoginRegisterActivity : AppCompatActivity(),  RegisterFragment.OnRegisterF
             .commit()
     }
 
-    private fun showRegisterFragment(){
-        val fragment = RegisterFragment.newInstance()
-        supportFragmentManager
-            .beginTransaction().replace(R.id.fragment_container_login, fragment)
-            .commit()
-    }
-
     override fun loginButtonClicked(text: String) {
         goToMain(text)
     }
@@ -73,13 +65,6 @@ class LoginRegisterActivity : AppCompatActivity(),  RegisterFragment.OnRegisterF
         finish()
     }
 
-   /* override fun switchLogin() {
-        showLoginFragment()
-    }
-
-    override fun switchRegister() {
-        showRegisterFragment()
-    }*/
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

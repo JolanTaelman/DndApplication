@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragments.SheetDetail" android:id="@+id/frameLayout3">
+    <TextView
+            android:text="@string/charname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CharacterNameID"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="@+id/CharDetailsLayoutId"
+            android:textSize="30sp" android:layout_marginTop="16dp"
+    />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            android:id="@+id/CharDetailsLayoutId" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/CharStatsLayoutId"
+            app:layout_constraintTop_toBottomOf="@+id/CharacterNameID">
+
+
+        <TextView
+                android:text="@string/speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Speed_id"
+                app:layout_constraintTop_toBottomOf="@+id/AC_Id" android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/RaceLabelId"/>
+        <TextView
+                android:text="@string/hp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HP"
+                app:layout_constraintBottom_toTopOf="@+id/AC_Id" android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/AC_Id"
+                android:textSize="24sp" android:layout_marginBottom="8dp" app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+                android:text="@string/ac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AC_Id"
+                app:layout_constraintTop_toBottomOf="@+id/HP"
+                app:layout_constraintBottom_toTopOf="@+id/Speed_id" app:layout_constraintEnd_toEndOf="@+id/Speed_id"
+                android:textSize="24sp" android:layout_marginBottom="8dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Speed_Value_Id"
+                app:layout_constraintStart_toEndOf="@+id/Speed_id"
+                android:layout_marginStart="8dp" android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/Speed_id"
+                app:layout_constraintTop_toTopOf="@+id/Speed_id"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HP_Value_Id"
+                app:layout_constraintTop_toTopOf="@+id/HP"
+                android:textSize="24sp" app:layout_constraintStart_toEndOf="@+id/HP"
+                android:layout_marginStart="8dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ACValueId"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/AC_Id"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/AC_Id" app:layout_constraintBottom_toBottomOf="@+id/AC_Id"/>
+        <TextView
+                android:text="@string/race"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RaceLabelId"
+                android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/Speed_id"
+                app:layout_constraintEnd_toEndOf="@+id/BackgroundLabelId"/>
+        <TextView
+                android:text="@string/backgr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BackgroundLabelId"
+                android:textSize="24sp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/RaceLabelId"
+                app:layout_constraintEnd_toEndOf="@+id/AlignmentLabelId"/>
+        <TextView
+                android:text="Alignment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AlignmentLabelId" android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/BackgroundLabelId"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RaceValueId" android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/RaceLabelId" android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/RaceLabelId"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AlignmentValueId" android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/AlignmentLabelId" android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/BackgroundValueId"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BackgroundValueId" android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/BackgroundLabelId" android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/RaceValueId"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CharStatsLayoutId"
+            app:layout_constraintTop_toTopOf="@+id/CharDetailsLayoutId"
+            app:layout_constraintStart_toEndOf="@+id/CharDetailsLayoutId"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout4" app:layout_constraintHorizontal_bias="0.5">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/constraintLayout"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+                app:layout_constraintHorizontal_bias="0.0" android:layout_marginEnd="64dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/StrValueId" android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/DexValueID"
+                    app:layout_constraintTop_toTopOf="@+id/StrLabelId"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/DexValueID" android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/ConValueId"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/StrValueId"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ConValueId" android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/ConLabelId"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/DexValueID"/>
+            <TextView
+                    android:text="@string/str"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/StrLabelId" android:textSize="24sp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/DexLabelID" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/DexLabelID"/>
+            <TextView
+                    android:text="@string/dex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/DexLabelID" android:textSize="24sp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/ConLabelId"
+                    app:layout_constraintStart_toStartOf="@+id/ConLabelId"/>
+            <TextView
+                    android:text="@string/con"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ConLabelId" android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/constraintLayout3"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/IntValueId" android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/WisValueId"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/WisValueId" android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/IntValueId"
+                    app:layout_constraintStart_toStartOf="@+id/ChaValueId"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ChaValueId" android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/WisValueId"
+                    app:layout_constraintStart_toEndOf="@+id/ChaLabelId" android:layout_marginStart="8dp"/>
+            <TextView
+                    android:text="@string/wis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/WisLabelID" android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/IntLabelId"
+                    app:layout_constraintStart_toStartOf="@+id/ChaLabelId"/>
+            <TextView
+                    android:text="@string/inte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/IntLabelId" android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="@+id/WisLabelID"/>
+            <TextView
+                    android:text="@string/cha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ChaLabelId" android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/WisLabelID"
+                    app:layout_constraintStart_toStartOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/CharStatsLayoutId" android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/CharStatsLayoutId" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:id="@+id/constraintLayout4"
+            app:layout_constraintHorizontal_bias="0.5">
+
+        <TextView
+                android:text="@string/lv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LvLabelID" android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/ClassNameLabelId"
+                app:layout_constraintStart_toStartOf="@+id/ClassNameLabelId"/>
+        <TextView
+                android:text="15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LvlValueId"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/LvLabelID"
+                app:layout_constraintBottom_toBottomOf="@+id/LvLabelID"
+                app:layout_constraintTop_toTopOf="@+id/LvLabelID"
+                app:layout_constraintEnd_toEndOf="@+id/ClassNameLabelId" android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"/>
+        <TextView
+                android:text="Paladin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ClassNameLabelId" android:textSize="30sp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.598"/>
+        <TextView
+                android:text="15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HitDieAmoutLabelID" android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/LvLabelID"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/LvlValueId"/>
+        <TextView
+                android:text="D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HitDieDLabelID" android:textSize="24sp"
+                app:layout_constraintTop_toTopOf="@+id/HitDieAmoutLabelID"
+                app:layout_constraintBottom_toBottomOf="@+id/HitDieAmoutLabelID"
+                app:layout_constraintStart_toEndOf="@+id/HitDieAmoutLabelID"/>
+        <TextView
+                android:text="8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HitDieValueID" app:layout_constraintStart_toEndOf="@+id/HitDieDLabelID"
+                app:layout_constraintTop_toTopOf="@+id/HitDieDLabelID" android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/HitDieDLabelID"
+                app:layout_constraintVertical_bias="0.0"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
